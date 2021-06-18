@@ -30,8 +30,9 @@ pipeline {
 
     stage('checkParameters') {
       steps {
-        sh '''#!/bin/bash
-echo "check parameters"'''
+        sh '''
+        echo "This script will connect to teradata and fetch the data"
+        '''
       }
     }
 
