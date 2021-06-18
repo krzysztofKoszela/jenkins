@@ -16,8 +16,15 @@ pipeline {
   stages {
     stage('inputParameters') {
       steps {
-        sh '''#!/bin/bash
-echo "input parameters"'''
+        echo "Hello ${params.PERSON}"
+
+                echo "Biography: ${params.BIOGRAPHY}"
+
+                echo "Toggle: ${params.TOGGLE}"
+
+                echo "Choice: ${params.CHOICE}"
+
+                echo "Password: ${params.PASSWORD}"
       }
     }
 
