@@ -28,10 +28,16 @@ pipeline {
       }
     }
 
-    stage('checkParameters') {
+    stage('connect to Teradata') {
       steps {
         sh '''
+        #!/bin/bash
         echo "This script will connect to teradata and fetch the data"
+        .LOGON 192.168.1.38/dbc, dbc
+        INSERT INTO KKDB.BatchUserOwner VALUES('PLBATCHHISZPANIA', 'Robert Lewandowski','333333');
+        .LOGOFF;
+        .EXIT;
+        echo "Teradata END"
         '''
       }
     }
