@@ -30,42 +30,7 @@ pipeline {
 
     stage('connect to Teradata') {
       steps {
-        sh '''
-        #!/bin/sh
-        echo "This script will connect to teradata and fetch the data"
-
-bteq < 
-"LOGON 192.168.1.38/dbc, dbc
-
-SELECT * from DBC.DBCinfo; 
-
-.LOGOFF;
-
-.EXIT;"
-> ${params.BIOGRAPHY}
-
- 
-
-ReturnCode=$?
-
- 
-
-if[[ ${ReturnCode} -eq 0 ]]; then
-
-                 echo "DBC info FETCH script completed successfully"
-
-                 exit 0
-
-else
-
-                 echo "DBC info FETCH script failled"
-
-                 exit 1
-
-fi
-   
-        echo "Teradata END"
-        '''
+       sh dbcinfofetch.sh
       }
     }
 
