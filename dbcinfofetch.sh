@@ -1,6 +1,6 @@
 #!/bin/sh
 
-SCRIPT_PATH="/home/production/scripts/dbcinfofetch.sql"
+SCRIPT_PATH="./dbcinfofetch.sql"
 
 LOG_DIR="/home/production/scripts/log"
 
