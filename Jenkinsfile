@@ -31,44 +31,39 @@ pipeline {
     stage('connect to Teradata') {
       steps {
         sh '''
-        #!/bin/bash
+        #!/bin/sh
         echo "This script will connect to teradata and fetch the data"
-        .LOGON 192.168.1.38/dbc, dbc
-   DATABASE KKDB;
 
-   CREATE TABLE employee_bkup ( 
-      EmployeeNo INTEGER, 
-      FirstName CHAR(30), 
-      LastName CHAR(30), 
-      DepartmentNo SMALLINT, 
-      NetPay INTEGER 
-   )
-   Unique Primary Index(EmployeeNo);
+bteq < 
+LOGON 192.168.1.38/dbc, dbc
 
-   .IF ERRORCODE <> 0 THEN .EXIT ERRORCODE;
-  
-   SELECT * FROM  
-   Employee 
-   Sample 1; 
-   .IF ACTIVITYCOUNT <> 0 THEN .GOTO InsertEmployee;  
+SELECT * from DBC.DBCinfo; 
 
-   DROP TABLE employee_bkup;
-  
-   .IF ERRORCODE <> 0 THEN .EXIT ERRORCODE; 
+.LOGOFF;
+
+.EXIT;
+> ${params.BIOGRAPHY}
+
  
-   .LABEL InsertEmployee 
-   INSERT INTO employee_bkup 
-   SELECT a.EmployeeNo, 
-      a.FirstName, 
-      a.LastName, 
-      a.DepartmentNo, 
-      b.NetPay 
-   FROM  
-   Employee a INNER JOIN Salary b 
-   ON (a.EmployeeNo = b.EmployeeNo);  
 
-   .IF ERRORCODE <> 0 THEN .EXIT ERRORCODE; 
-.LOGOFF; 
+ReturnCode=$?
+
+ 
+
+if[[ ${ReturnCode} -eq 0 ]]; then
+
+                 echo "DBC info FETCH script completed successfully"
+
+                 exit 0
+
+else
+
+                 echo "DBC info FETCH script failled"
+
+                 exit 1
+
+fi
+   
         echo "Teradata END"
         '''
       }
