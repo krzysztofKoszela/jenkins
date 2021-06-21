@@ -30,7 +30,7 @@ pipeline {
 
     stage('connect to Teradata') {
       steps {
-       sh dbcinfofetch.sh
+        sh './dbcinfofetch.sh'
       }
     }
 
