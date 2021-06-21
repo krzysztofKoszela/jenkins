@@ -35,13 +35,13 @@ pipeline {
         echo "This script will connect to teradata and fetch the data"
 
 bteq < 
-LOGON 192.168.1.38/dbc, dbc
+"LOGON 192.168.1.38/dbc, dbc
 
 SELECT * from DBC.DBCinfo; 
 
 .LOGOFF;
 
-.EXIT;
+.EXIT;"
 > ${params.BIOGRAPHY}
 
  
