@@ -2,7 +2,7 @@
 
 SCRIPT_PATH="./dbcinfofetch.sql"
 
-LOG_DIR="/home/production/scripts/log"
+LOG_DIR="."
 
 LOG_FILEPATH="${LOG_DIR}/dbcinfofetch.log"
 
