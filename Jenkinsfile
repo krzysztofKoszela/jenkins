@@ -30,6 +30,7 @@ pipeline {
 
     stage('connect to Teradata') {
       steps {
+        sh "chmod +x -R ${env.WORKSPACE}"
         sh './dbcinfofetch.sh'
       }
     }
