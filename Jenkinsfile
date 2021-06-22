@@ -32,6 +32,31 @@ pipeline {
       steps {
         sh "chmod +x -R ${env.WORKSPACE}"
         sh './dbcinfofetch.sh'
+         sh '''#!/bin/bash
+#!/bin/ksh
+
+#You can add
+#comments here
+#so that other developer can get some info 
+#about this script
+#Author: ABCDEF Date: 10-July-2019
+
+LOGON_STRING='192.168.1.38/dbc, dbc'
+default_db=KKDB
+
+#call BTEQ utility and run SQL commands
+bteq << label_bteq
+.logon ${LOGON_STRING}
+
+database ${default_db};
+
+params.BIOGRAPHY < select * from BatchUserOwner;
+
+.LOGOFF;
+.EXIT;
+
+label_bteq
+'''
       }
     }
 
