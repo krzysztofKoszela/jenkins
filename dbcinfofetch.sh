@@ -8,7 +8,6 @@ LOG_FILEPATH="${LOG_DIR}/dbcinfofetch.log"
 
  
 
-touch $LOG_FILE
 
  
 
