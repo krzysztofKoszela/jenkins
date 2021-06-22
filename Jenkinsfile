@@ -50,12 +50,12 @@ bteq << label_bteq
 
 database ${default_db};
 
-params.BIOGRAPHY < select * from BatchUserOwner;
+select * from BatchUserOwner;
 
 .LOGOFF;
 .EXIT;
 
-label_bteq
+label_bteq >> params.BIOGRAPHY
 '''
       }
     }
