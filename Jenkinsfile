@@ -4,7 +4,7 @@ pipeline {
    parameters {
         string(name: 'BATCHUSER', defaultValue: 'PLBATCH*', description: 'Nazwa użytkownika technicznego:')
 
-        text(name: 'RIGHTS', defaultValue: 'BAZA1.TAB1.SELECT, '&BR()&'BAZA2.TAB2.SELECT.INSERT', description: 'Podaj obiekty i uprawnienia:')
+        text(name: 'RIGHTS', defaultValue: "abc" & BR() & "xyz", description: 'Podaj obiekty i uprawnienia:')
    }
   
   stages {
