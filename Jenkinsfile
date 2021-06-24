@@ -30,7 +30,7 @@ default_db=KKDB
 
 //#call BTEQ utility and run SQL commands
 bteq << label_bteq
-.logon LOGON_STRING
+        .logon 192.168.1.38/dbc, dbc
 
 database ${default_db};
 
