@@ -19,7 +19,6 @@ pipeline {
  stage('connect to Teradata') {
       steps {
 sh '''#!/bin/bash
-BATCHUSERNAME=$1
 #You can add
 #comments here
 #so that other developer can get some info 
@@ -35,7 +34,7 @@ bteq << label_bteq
 
 database ${default_db};
 
-select * from BatchUserOwner where BatchUserName = BATCHUSERNAME
+select * from BatchUserOwner where BatchUserName = $1;
 
 .LOGOFF;
 .EXIT;
