@@ -24,7 +24,7 @@ sh '''#!/bin/bash
 #so that other developer can get some info 
 #about this script
 #Author: ABCDEF Date: 10-July-2019
-echo \$params.BATCHUSER
+BATCHUSERL=''PLBATCH_POLSKA''
 
 LOGON_STRING='192.168.1.38/dbc, dbc'
 default_db=KKDB
@@ -35,7 +35,7 @@ bteq << label_bteq
 
 database ${default_db};
 
-select * from BatchUserOwner where BatchUserName = params.BATCHUSER;
+select * from BatchUserOwner where BatchUserName = $BATCHUSERL;
 
 .LOGOFF;
 .EXIT;
