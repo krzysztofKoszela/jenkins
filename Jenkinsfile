@@ -18,8 +18,6 @@ pipeline {
 
  stage('connect to Teradata') {
       steps {
-        sh "chmod +x -R ${env.WORKSPACE}"
-        sh './dbcinfofetch.sh'
         sh '''#!/bin/bash
 #You can add
 #comments here
@@ -43,7 +41,6 @@ select * from BatchUserOwners where BatchUserName = '${params.BATCHUSER}';
 
 label_bteq >> params.RIGHTS
 '''
-          echo "Dostałem z TD: ${params.RIGHTS}"
       }
     }
 
