@@ -34,12 +34,12 @@ bteq << label_bteq
 
 database ${default_db};
 
-select * from BatchUserOwners where BatchUserName = '${params.BATCHUSER}';
+select * from BatchUserOwners where BatchUserName;
 
 .LOGOFF;
 .EXIT;
 
-label_bteq >> ${params.RIGHTS}
+label_bteq >> params.RIGHTS
 '''
       }
     }
