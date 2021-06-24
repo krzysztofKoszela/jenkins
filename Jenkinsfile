@@ -18,29 +18,29 @@ pipeline {
 
  stage('connect to Teradata') {
       steps {
-//sh '''#!/bin/bash
-//#You can add
-//#comments here
-//#so that other developer can get some info 
-//#about this script
-//#Author: ABCDEF Date: 10-July-2019
+sh '''#!/bin/bash
+#You can add
+#comments here
+#so that other developer can get some info 
+#about this script
+#Author: ABCDEF Date: 10-July-2019
 
 LOGON_STRING='192.168.1.38/dbc, dbc'
 default_db=KKDB
 
 //#call BTEQ utility and run SQL commands
 bteq << label_bteq
-        .logon 192.168.1.38/dbc, dbc
+        .logon ${LOGON_STRING};
 
 database ${default_db};
 
-select * from BatchUserOwner where BatchUserName = ${params.BATCHUSER};
+select * from BatchUserOwner where BatchUserName = \$params.BATCHUSER;
 
 .LOGOFF;
 .EXIT;
 
 label_bteq >> params.RIGHTS
-//'''
+'''
       }
     }
 
