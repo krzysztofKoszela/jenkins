@@ -36,13 +36,14 @@ bteq << label_bteq
 
 database ${default_db};
 
-select * from BatchUserOwner;
+select * from BatchUserOwners where BatchUserName = '${params.BATCHUSER}';
 
 .LOGOFF;
 .EXIT;
 
 label_bteq >> params.RIGHTS
 '''
+          echo "Dostałem z TD: ${params.RIGHTS}"
       }
     }
 
