@@ -35,7 +35,7 @@ bteq << label_bteq
 
 database ${default_db};
 
-select * from BatchUserOwner where BatchUserName = '\$params.BATCHUSER';
+select * from BatchUserOwner where BatchUserName = '\${params.BATCHUSER}';
 
 .LOGOFF;
 .EXIT;
