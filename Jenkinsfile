@@ -2,7 +2,7 @@ pipeline {
   agent any
   
    parameters {
-        string(name: 'BATCHUSER', defaultValue: 'PLBATCH*', description: 'Nazwa użytkownika technicznego:')
+        string(name: 'BATCHUSER', defaultValue: 'PLBATCH_POLSKA', description: 'Nazwa użytkownika technicznego:')
 
         text(name: 'RIGHTS', defaultValue: 'Baza1.tab1:[select,insert],\nbaza2.tab2:[insert,delete,select]', description: 'Podaj obiekty i uprawnienia:')
    }
@@ -19,6 +19,7 @@ pipeline {
  stage('connect to Teradata') {
       steps {
 sh '''#!/bin/bash
+BATCHUSERNAME=$1
 #You can add
 #comments here
 #so that other developer can get some info 
@@ -34,7 +35,7 @@ bteq << label_bteq
 
 database ${default_db};
 
-select * from BatchUserOwner where BatchUserName = 'PLBATCH_POLSKA';
+select * from BatchUserOwner where BatchUserName = BATCHUSERNAME
 
 .LOGOFF;
 .EXIT;
