@@ -39,7 +39,7 @@ select * from BatchUserOwners where BatchUserName = '${params.BATCHUSER}';
 .LOGOFF;
 .EXIT;
 
-label_bteq >> params.RIGHTS
+label_bteq >> ${params.RIGHTS}
 '''
       }
     }
