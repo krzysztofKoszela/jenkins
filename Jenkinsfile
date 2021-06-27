@@ -25,7 +25,7 @@ sh '''
 #about this script
 #Author: ABCDEF Date: 10-July-2019
 batchgrovvy="\'''' + params.BATCHUSER + '''\'"
-output=""
+output="cos"
 LOGON_STRING='192.168.1.38/dbc, dbc'
 default_db=KKDB
 
@@ -41,7 +41,7 @@ select * from BatchUserOwner where BatchUserName in $batchgrovvy;
 .EXIT;
 
 label_bteq >> output
-echo "$output"
+echo $output
 '''
       }
     }
