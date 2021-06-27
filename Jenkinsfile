@@ -24,8 +24,8 @@ sh '''#!/bin/bash
 #so that other developer can get some info 
 #about this script
 #Author: ABCDEF Date: 10-July-2019
-#BATCHUSERL="'PLBATCH_POLSKA'"
-BATCHUSERL="'\$params.BATCHUSER'"
+BATCHUSERL="'PLBATCH_POLSKA'"
+#BATCHUSERL="'\$params.BATCHUSER'"
 
 LOGON_STRING='192.168.1.38/dbc, dbc'
 default_db=KKDB
