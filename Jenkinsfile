@@ -26,7 +26,7 @@ sh '''
 #Author: ABCDEF Date: 10-July-2019
 #batchgrovvy=''' + params.BATCHUSER + '''
 #batchusr="\'${batchgrovvy}\'"
-batchgrovvy="\'${''' + params.BATCHUSER + '''}\'"
+batchgrovvy="\'''' + params.BATCHUSER + '''\'"
 #batchusr="\'${batchgrovvy}\'"
 
 LOGON_STRING='192.168.1.38/dbc, dbc'
