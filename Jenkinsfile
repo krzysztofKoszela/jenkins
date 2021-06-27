@@ -26,6 +26,7 @@ sh '''
 #Author: ABCDEF Date: 10-July-2019
 batchgrovvy="\'''' + params.BATCHUSER + '''\'"
 output="cos"
+batchinfo="coscos"
 LOGON_STRING='192.168.1.38/dbc, dbc'
 default_db=KKDB
 
@@ -35,7 +36,7 @@ bteq << label_bteq
 
 database ${default_db};
 
-select * from BatchUserOwner where BatchUserName in $batchgrovvy;
+$batchinfo = select * from BatchUserOwner where BatchUserName in $batchgrovvy;
 
 .LOGOFF;
 .EXIT;
