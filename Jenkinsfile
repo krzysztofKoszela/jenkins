@@ -18,7 +18,7 @@ pipeline {
 
  stage('connect to Teradata') {
       steps {
-sh "
+sh '''
 #You can add
 #comments here
 #so that other developer can get some info 
@@ -42,7 +42,7 @@ select * from BatchUserOwner where BatchUserName in $BATCHUSERL;
 .EXIT;
 
 label_bteq >> params.RIGHTS
-"
+'''
       }
     }
 
