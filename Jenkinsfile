@@ -41,6 +41,7 @@ select * from BatchUserOwner where BatchUserName in $batchgrovvy;
 .EXIT;
 
 label_bteq >> output
+echo "$output"
 '''
       }
     }
