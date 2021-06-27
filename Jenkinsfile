@@ -24,11 +24,10 @@ sh '''
 #so that other developer can get some info 
 #about this script
 #Author: ABCDEF Date: 10-July-2019
-batchgrovvy=''' + params.BATCHUSER + '''
-batchusr="\'${batchgrovvy}\'"
-# dobre BATCHUSERL=''' + params.BATCHUSER + '''
-#BATCHUSERL="'\$params.BATCHUSER'"
-#BATCHUSERL="'"${params.BATCHUSER}"'"
+#batchgrovvy=''' + params.BATCHUSER + '''
+#batchusr="\'${batchgrovvy}\'"
+batchgrovvy="\'${''' + params.BATCHUSER + '''}\'"
+#batchusr="\'${batchgrovvy}\'"
 
 LOGON_STRING='192.168.1.38/dbc, dbc'
 default_db=KKDB
@@ -39,7 +38,7 @@ bteq << label_bteq
 
 database ${default_db};
 
-select * from BatchUserOwner where BatchUserName in $batchusr;
+select * from BatchUserOwner where BatchUserName in $batchgrovvy;
 
 .LOGOFF;
 .EXIT;
