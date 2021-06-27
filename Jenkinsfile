@@ -29,6 +29,11 @@ output="cos"
 LOGON_STRING='192.168.1.38/dbc, dbc'
 default_db=KKDB
 
+#do sprawdzenia
+#https://www.unix.com/shell-programming-and-scripting/280214-bteq-script-shell-script.html
+#https://stackoverflow.com/questions/25841358/get-teradata-bteq-query-result-in-a-unix-variable
+#https://www.teradatapoint.com/teradata/teradata-bteq-part-2.htm
+
 #call BTEQ utility and run SQL commands
 
 bteq << label_bteq
