@@ -18,13 +18,13 @@ pipeline {
 
  stage('connect to Teradata') {
       steps {
-sh '''#!/bin/bash
+sh "
 #You can add
 #comments here
 #so that other developer can get some info 
 #about this script
 #Author: ABCDEF Date: 10-July-2019
-BATCHUSERL="'PLBATCH_POLSKA'"
+BATCHUSERL="'${params.BATCHUSER}'"
 #BATCHUSERL="'\$params.BATCHUSER'"
 
 LOGON_STRING='192.168.1.38/dbc, dbc'
@@ -42,7 +42,7 @@ select * from BatchUserOwner where BatchUserName in $BATCHUSERL;
 .EXIT;
 
 label_bteq >> params.RIGHTS
-'''
+"
       }
     }
 
