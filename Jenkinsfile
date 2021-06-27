@@ -30,7 +30,7 @@ LOGON_STRING='192.168.1.38/dbc, dbc'
 default_db=KKDB
 
 #call BTEQ utility and run SQL commands
-batchinfo(){
+
 bteq << label_bteq
         .logon ${LOGON_STRING};
 
@@ -43,9 +43,7 @@ select * from BatchUserOwner where BatchUserName in $batchgrovvy;
 
 label_bteq >> output
 }
-echo "Multiline shell steps works too"
-var_test=$(batchinfo)
-echo $var_test
+echo $label_bteq
 '''
       }
     }
