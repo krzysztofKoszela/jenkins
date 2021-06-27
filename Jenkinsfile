@@ -24,7 +24,7 @@ sh '''
 #so that other developer can get some info 
 #about this script
 #Author: ABCDEF Date: 10-July-2019
-#BATCHUSERL=''' + params.BATCHUSER + '''
+#BATCHUSERL=params.BATCHUSER
 #BATCHUSERL="'\$params.BATCHUSER'"
 BATCHUSERL="'"${params.BATCHUSER}"'"
 
