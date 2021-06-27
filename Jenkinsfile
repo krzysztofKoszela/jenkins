@@ -25,7 +25,7 @@ sh '''
 #about this script
 #Author: ABCDEF Date: 10-July-2019
 batchgrovvy=''' + params.BATCHUSER + '''
-batchusr=\'${batchgrovvy}\'
+batchusr="\'${batchgrovvy}\'"
 # dobre BATCHUSERL=''' + params.BATCHUSER + '''
 #BATCHUSERL="'\$params.BATCHUSER'"
 #BATCHUSERL="'"${params.BATCHUSER}"'"
