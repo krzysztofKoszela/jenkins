@@ -2,7 +2,7 @@ pipeline {
   agent any
   
    parameters {
-        string(name: 'BATCHUSER', defaultValue: 'PLBATCH_POLSKA', description: 'Nazwa użytkownika technicznego:')
+        string(name: 'BATCHUSER', defaultValue: 'PLBATCH_POLSKApppp', description: 'Nazwa użytkownika technicznego:')
 
         text(name: 'RIGHTS', defaultValue: 'Baza1.tab1:[select,insert],\nbaza2.tab2:[insert,delete,select]', description: 'Podaj obiekty i uprawnienia:')
    }
@@ -26,7 +26,7 @@ sh '''
 #Author: ABCDEF Date: 10-July-2019
 #BATCHUSERL="'""params.BATCHUSER""'"
 #BATCHUSERL="'\$params.BATCHUSER'"
-BATCHUSERL="'"$params.BATCHUSER"'"
+BATCHUSERL="'"${params.BATCHUSER}"'"
 
 LOGON_STRING='192.168.1.38/dbc, dbc'
 default_db=KKDB
