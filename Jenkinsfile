@@ -25,7 +25,7 @@ sh '''
 #about this script
 #Author: ABCDEF Date: 10-July-2019
 BATCHUSERL=''' + params.BATCHUSER + '''
-BATCH = \'$BATCHUSERL\'
+ZMIENNA = \'$BATCHUSERL\'
 # dobre BATCHUSERL=''' + params.BATCHUSER + '''
 #BATCHUSERL="'\$params.BATCHUSER'"
 #BATCHUSERL="'"${params.BATCHUSER}"'"
@@ -39,7 +39,7 @@ bteq << label_bteq
 
 database ${default_db};
 
-select * from BatchUserOwner where BatchUserName in $BATCH;
+select * from BatchUserOwner where BatchUserName in $ZMIENNA;
 
 .LOGOFF;
 .EXIT;
