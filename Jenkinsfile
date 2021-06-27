@@ -25,7 +25,7 @@ sh '''
 #about this script
 #Author: ABCDEF Date: 10-July-2019
 BATCHUSERL=''' + params.BATCHUSER + '''
-ZMIENNA = \'$BATCHUSERL\'
+ZMIENNA = \'+$BATCHUSERL+\'
 # dobre BATCHUSERL=''' + params.BATCHUSER + '''
 #BATCHUSERL="'\$params.BATCHUSER'"
 #BATCHUSERL="'"${params.BATCHUSER}"'"
