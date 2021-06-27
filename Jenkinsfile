@@ -24,7 +24,8 @@ sh '''
 #so that other developer can get some info 
 #about this script
 #Author: ABCDEF Date: 10-July-2019
-BATCHUSERL='\'' + params.BATCHUSER + '\''
+BATCHUSERL=''' + params.BATCHUSER + '''
+BATCH = \'$BATCHUSERL\'
 # dobre BATCHUSERL=''' + params.BATCHUSER + '''
 #BATCHUSERL="'\$params.BATCHUSER'"
 #BATCHUSERL="'"${params.BATCHUSER}"'"
@@ -38,7 +39,7 @@ bteq << label_bteq
 
 database ${default_db};
 
-select * from BatchUserOwner where BatchUserName in $BATCHUSERL;
+select * from BatchUserOwner where BatchUserName in $BATCH;
 
 .LOGOFF;
 .EXIT;
