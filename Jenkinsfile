@@ -36,7 +36,10 @@ default_db=KKDB
 
 #call BTEQ utility and run SQL commands
 
-bteq << label_bteq
+
+query_et() 
+{ 
+bteq << label_bteq | grep '^>' | sed -e "s/^>//" 
         .logon ${LOGON_STRING};
 
 database ${default_db};
@@ -48,7 +51,8 @@ select * from BatchUserOwner where BatchUserName in $batchgrovvy;
 
 label_bteq >> output
 }
-echo $label_bteq
+
+echo $query_et
 '''
       }
     }
