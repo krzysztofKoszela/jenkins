@@ -46,7 +46,6 @@ select * from BatchUserOwner where BatchUserName in $batchgrovvy;
 .QUIT; 
 .EXIT;
 label_bteq)
-}
 '''
       }
     }
