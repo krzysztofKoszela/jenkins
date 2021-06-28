@@ -45,13 +45,7 @@ bteq << EOF
 .LOGOFF;
 .QUIT;
 '''
-
-      }
-    }
-
-    stage('email') {
-      steps {
-      script {
+script {
         String fileContents = new File('/tmp/abc.txt').text
             def mailRecipients = "'"+fileContensts+"'"
             def jobName = currentBuild.fullDisplayName
