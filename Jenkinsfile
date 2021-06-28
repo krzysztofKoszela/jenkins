@@ -29,23 +29,7 @@ output="cos"
 LOGON_STRING='192.168.1.38/dbc, dbc'
 default_db=KKDB
 
-#do sprawdzenia
-#https://www.unix.com/shell-programming-and-scripting/280214-bteq-script-shell-script.html
-#https://stackoverflow.com/questions/25841358/get-teradata-bteq-query-result-in-a-unix-variable
-#https://www.teradatapoint.com/teradata/teradata-bteq-part-2.htm
 
-#call BTEQ utility and run SQL commands
-testabcd=$(bteq << label_bteq |grep '^>' |sed -e "s/^>//"
-        .logon ${LOGON_STRING};
-
-database ${default_db};
-
-select * from BatchUserOwner where BatchUserName in $batchgrovvy;
-
-.LOGOFF 
-.QUIT; 
-.EXIT;
-label_bteq)
 '''
       }
     }
