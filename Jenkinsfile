@@ -28,7 +28,22 @@ batchgrovvy="\'''' + params.BATCHUSER + '''\'"
 output="cos"
 LOGON_STRING='192.168.1.38/dbc, dbc'
 default_db=KKDB
+HOST='192.168.1.38'
+USER='DBC'
+PASSWORD='DBC'
+SRC_DB=KKDB;
+SOURCE_TABLE="BatchUserOwner"
 
+testabcd=$(bteq << EOF 2>&1  |grep '^>' |sed -e "s/^>//"
+ .LOGON ${HOST}/${USER},${PASSWORD}
+ DATABASE ${SRC_DB};
+ .set width 2000;
+  .set titledashes off;
+ SELECT '>'||COUNT(*) FROM ${SRC_DB}.${SOURCE_TABLE};
+.LOGOFF;
+.QUIT;
+.EXIT
+ EOF)
 
 '''
       }
