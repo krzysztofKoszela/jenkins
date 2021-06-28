@@ -38,7 +38,7 @@ bteq << EOF
  DATABASE ${SRC_DB};
 .EXPORT DATA FILE = /tmp/abc.txt;
 .set RECORDMODE OFF;
- select BatchUserName from ${SRC_DB}.${SOURCE_TABLE} where BatchUserName in $batchgrovvy;
+ select * from ${SRC_DB}.${SOURCE_TABLE} where BatchUserName in $batchgrovvy;
  .EXPORT RESET;
 .LOGOFF;
 .QUIT;
