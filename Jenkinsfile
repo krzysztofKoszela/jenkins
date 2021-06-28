@@ -33,7 +33,7 @@ USER='DBC'
 PASSWORD='DBC'
 SRC_DB=KKDB;
 SOURCE_TABLE='BatchUserOwner'
-testabcd=$(bteq << EOF 2>&1  |grep '^>' |sed -e "s/^>//"
+bteq << EOF
  .LOGON ${HOST}/${USER},${PASSWORD}
  DATABASE ${SRC_DB};
  .set width 2000;
@@ -41,10 +41,7 @@ testabcd=$(bteq << EOF 2>&1  |grep '^>' |sed -e "s/^>//"
  select BatchUserName from ${SRC_DB}.${SOURCE_TABLE} where BatchUserName in $batchgrovvy;
 .LOGOFF;
 .QUIT;
-EOF
-)
 
-echo ${testabcd}
 '''
       }
     }
