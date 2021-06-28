@@ -49,10 +49,10 @@ select * from BatchUserOwner where BatchUserName in $batchgrovvy;
 .LOGOFF;
 .EXIT;
 
-label_bteq >> output
+.LOGOFF 
+.QUIT; 
+label_bteq 
 }
-
-echo $query_et
 '''
       }
     }
