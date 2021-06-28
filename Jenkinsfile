@@ -35,11 +35,7 @@ default_db=KKDB
 #https://www.teradatapoint.com/teradata/teradata-bteq-part-2.htm
 
 #call BTEQ utility and run SQL commands
-
-
-query_et() 
-{ 
-bteq << label_bteq | grep '^>' | sed -e "s/^>//" 
+bteq << label_bteq
         .logon ${LOGON_STRING};
 
 database ${default_db};
@@ -52,7 +48,6 @@ select * from BatchUserOwner where BatchUserName in $batchgrovvy;
 .LOGOFF 
 .QUIT; 
 label_bteq 
-}
 }
 '''
       }
