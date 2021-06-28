@@ -32,8 +32,7 @@ HOST='192.168.1.38'
 USER='DBC'
 PASSWORD='DBC'
 SRC_DB=KKDB;
-SOURCE_TABLE="BatchUserOwner"
-
+SOURCE_TABLE='BatchUserOwner'
 testabcd=$(bteq << EOF 2>&1  |grep '^>' |sed -e "s/^>//"
  .LOGON ${HOST}/${USER},${PASSWORD}
  DATABASE ${SRC_DB};
@@ -43,9 +42,7 @@ testabcd=$(bteq << EOF 2>&1  |grep '^>' |sed -e "s/^>//"
 .LOGOFF;
 .QUIT;
 .EXIT
- EOF)
-
-'''
+ EOF)'''
       }
     }
 
