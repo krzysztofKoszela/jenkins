@@ -42,6 +42,7 @@ bteq << EOF 2>&1  |grep '^>' |sed -e "s/^>//"
  SELECT '>'||COUNT(*) FROM ${SRC_DB}.${SOURCE_TABLE};
 .LOGOFF;
 .QUIT;
+EOF
 }
 
 var_test=$(testabcd)
