@@ -46,7 +46,7 @@ bteq << EOF
 .QUIT;
 '''
 script {
-        String fileContents = new File('/tmp/abc.txt').text
+        def fileContents = readFile "/tmp/abc.txt"
             def mailRecipients = "'"+fileContensts+"'"
             def jobName = currentBuild.fullDisplayName
             emailext body: '''${SCRIPT, template="groovy-html.template"}''',
