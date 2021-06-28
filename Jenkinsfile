@@ -52,7 +52,8 @@ bteq << EOF
     stage('email') {
       steps {
       script {
-            def mailRecipients = 'krzysztof.koszela96@gmail.com'
+        String fileContents = new File('/tmp/abc.txt').text
+            def mailRecipients = "'"+fileContensts+"'"
             def jobName = currentBuild.fullDisplayName
             emailext body: '''${SCRIPT, template="groovy-html.template"}''',
             mimeType: 'text/html',
