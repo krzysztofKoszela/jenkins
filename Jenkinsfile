@@ -48,7 +48,7 @@ bteq << EOF
 script {
   def data = readFile(file: '/tmp/abc.txt')
                    println(data)
-            def mailRecipients = "'"+data+"'"
+            def mailRecipients = data
             def jobName = currentBuild.fullDisplayName
             emailext body: '''${SCRIPT, template="groovy-html.template"}''',
             mimeType: 'text/html',
