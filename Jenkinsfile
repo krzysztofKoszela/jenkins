@@ -38,7 +38,7 @@ testabcd=$(bteq << EOF 2>&1  |grep '^>' |sed -e "s/^>//"
  DATABASE ${SRC_DB};
  .set width 2000;
   .set titledashes off;
- SELECT '>'||COUNT(*) FROM ${SRC_DB}.${SOURCE_TABLE};
+ select * from ${SRC_DB}.${SOURCE_TABLE} where BatchUserName in $batchgrovvy;
 .LOGOFF;
 .QUIT;
 EOF
