@@ -33,7 +33,8 @@ USER='DBC'
 PASSWORD='DBC'
 SRC_DB=KKDB;
 SOURCE_TABLE='BatchUserOwner'
-testabcd=$(bteq << EOF 2>&1  |grep '^>' |sed -e "s/^>//"
+testabcd(){
+bteq << EOF 2>&1  |grep '^>' |sed -e "s/^>//"
  .LOGON ${HOST}/${USER},${PASSWORD}
  DATABASE ${SRC_DB};
  .set width 2000;
@@ -41,8 +42,12 @@ testabcd=$(bteq << EOF 2>&1  |grep '^>' |sed -e "s/^>//"
  SELECT '>'||COUNT(*) FROM ${SRC_DB}.${SOURCE_TABLE};
 .LOGOFF;
 .QUIT;
-.EXIT
- EOF)'''
+}
+
+var_test=$(testabcd)
+
+echo $var_test
+'''
       }
     }
 
