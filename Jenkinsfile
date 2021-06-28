@@ -19,6 +19,7 @@ pipeline {
  stage('connect to Teradata') {
       steps {
 sh '''
+rm /tmp/abc.txt
 #You can add
 #comments here
 #so that other developer can get some info 
