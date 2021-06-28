@@ -36,12 +36,10 @@ SOURCE_TABLE='BatchUserOwner'
 bteq << EOF
  .LOGON ${HOST}/${USER},${PASSWORD}
  DATABASE ${SRC_DB};
- .EXPORT FILE = output.txt;
-.SET SEPARATOR '|'
- .set width 2000;
-  .set titledashes off;
-  .SET RECORDMODE OFF;
+.EXPORT DATA FILE = abc.txt;
+.set RECORDMODE OFF;
  select BatchUserName from ${SRC_DB}.${SOURCE_TABLE} where BatchUserName in $batchgrovvy;
+ .EXPORT RESET;
 .LOGOFF;
 .QUIT;
 
