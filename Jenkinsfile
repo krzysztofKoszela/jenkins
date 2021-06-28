@@ -38,6 +38,7 @@ bteq << EOF
  DATABASE ${SRC_DB};
  .set width 2000;
   .set titledashes off;
+  .SET RECORDMODE OFF;
  select BatchUserName from ${SRC_DB}.${SOURCE_TABLE} where BatchUserName in $batchgrovvy;
 .LOGOFF;
 .QUIT;
