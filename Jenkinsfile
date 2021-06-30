@@ -11,8 +11,10 @@ pipeline {
 
     stage('ACCEPT DATA OWNERS') {
       steps {
+        script{
 def result = (params.RIGHTS =~ /^.+:/).findAll()
-        echo result
+          echo result
+        }
       }
     }
 
