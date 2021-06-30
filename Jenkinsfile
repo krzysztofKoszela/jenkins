@@ -19,7 +19,6 @@ pipeline {
  stage('connect to Teradata') {
       steps {
 sh '''
-rm /tmp/abc.txt
 #You can add
 #comments here
 #so that other developer can get some info 
@@ -92,7 +91,8 @@ echo "data owner approve"'''
     stage('addPermissons') {
       steps {
         sh '''#!/bin/bash
-echo "done"'''
+echo "rm"
+rm /tmp/abc.txt'''
       }
     }
 
