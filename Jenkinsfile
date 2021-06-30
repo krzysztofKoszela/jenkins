@@ -70,8 +70,9 @@ script {
 
     stage('ACCEPT DATA OWNERS') {
       steps {
-        String r = params.RIGHTS
-assert r =~ /^.+:/
+       // String r = params.RIGHTS
+//assert r =~ /^.+:/
+ echo 'Hello world!' 
       }
     }
 
