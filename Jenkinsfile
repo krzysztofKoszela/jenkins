@@ -72,7 +72,6 @@ script {
       steps {
         String r = params.RIGHTS
 assert r =~ /^.+:/
-        }
       }
     }
 
