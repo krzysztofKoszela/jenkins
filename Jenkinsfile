@@ -8,71 +8,11 @@ pipeline {
    }
   
   stages {
-    
- stage('ACCEPT BATCH USER OWNER') {
+
+    stage('ACCEPT DATA OWNERS') {
       steps {
-sh '''
-#Compare batch user name form input parameters with batch user name on Teradata
-batchgrovvy="\'''' + params.BATCHUSER + '''\'"
-LOGON_STRING='192.168.1.38/dbc, dbc'
-default_db=KKDB
-HOST='192.168.1.38'
-USER='DBC'
-PASSWORD='DBC'
-SRC_DB=KKDB;
-SOURCE_TABLE='BatchUserOwner'
-bteq << EOF
- .LOGON ${HOST}/${USER},${PASSWORD}
- DATABASE ${SRC_DB};
-.EXPORT DATA FILE = /tmp/abc.txt;
-.set RECORDMODE OFF;
-.set separator "|"
- select OwnerName from ${SRC_DB}.${SOURCE_TABLE} where BatchUserName in $batchgrovvy;
- .EXPORT RESET;
-.LOGOFF;
-.QUIT;
-'''
-script {
-  def data = readFile(file: '/tmp/abc.txt')
-  println(data)
-  
-  def jobName = currentBuild.fullDisplayName
-  def mailToRecipients = data
-  def useremail= data
-  
-  def userAborted = false
-
- emailext body: '''
-    Proszę kliknij w link ${BUILD_URL} i zaakceptuj lub odrzuć zmianę.<br>
- ''',    
-    mimeType: 'text/html',
-   subject: "[Jenkins_Teradata_Batch_Users] ${jobName} Zgoda na nadanie uprawnień dla ${params.BATCHUSER}",
-    from: "${useremail}",
-    to: "${mailToRecipients}",
-    recipientProviders: [[$class: 'CulpritsRecipientProvider']]
-
- echo "Building1"
- try { 
-    userInput = input submitter: 'vagrant', message: 'Do you approve?'
- } catch (org.jenkinsci.plugins.workflow.steps.FlowInterruptedException e) {
-   cause = e.causes.get(0)
-   echo "Aborted by " + cause.getUser().toString()
-   userAborted = true
-    echo "SYSTEM aborted, but looks like timeout period didn't complete. Aborting."
- }
-    if (userAborted) {
-  currentBuild.result = 'ABORTED'
- } else {
-  echo "Building2"
- }
-        }
-      }
-    }
-
-    stage('dataOwnerApprove') {
-      steps {
-        sh '''#!/bin/bash
-echo "data owner approve"'''
+def result = (params.RIGHTS =~ ^.+:).findAll()
+        echo result
       }
     }
 
