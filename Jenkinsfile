@@ -48,14 +48,36 @@ bteq << EOF
 script {
   def data = readFile(file: '/tmp/abc.txt')
                    println(data)
-            def mailRecipients = data
-            def jobName = currentBuild.fullDisplayName
-            emailext body: '''${SCRIPT, template="groovy-html.template"}''',
-            mimeType: 'text/html',
-            subject: "[Jenkins] ${jobName}",
-            to: "${mailRecipients}",
-            replyTo: "${mailRecipients}",
-            recipientProviders: [[$class: 'CulpritsRecipientProvider']]
+  
+  def jobName = currentBuild.fullDisplayName
+def mailToRecipients = data
+def useremail= data
+  
+  def userAborted = false
+
+ emailext body: '''
+    Please go to console output of ${BUILD_URL}input to approve or Reject.<br>
+ ''',    
+    mimeType: 'text/html',
+    subject: "[Jenkins] ${jobName} Build Approval Request",
+    from: "${useremail}",
+    to: "${mailToRecipients}",
+    recipientProviders: [[$class: 'CulpritsRecipientProvider']]
+
+ echo "Building1"
+ try { 
+    userInput = input submitter: 'vagrant', message: 'Do you approve?'
+ } catch (org.jenkinsci.plugins.workflow.steps.FlowInterruptedException e) {
+   cause = e.causes.get(0)
+   echo "Aborted by " + cause.getUser().toString()
+   userAborted = true
+    echo "SYSTEM aborted, but looks like timeout period didn't complete. Aborting."
+ }
+    if (userAborted) {
+  currentBuild.result = 'ABORTED'
+ } else {
+  echo "Building2"
+ }
         }
       }
     }
