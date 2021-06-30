@@ -2,30 +2,18 @@ pipeline {
   agent any
   
    parameters {
-        string(name: 'BATCHUSER', defaultValue: 'PLBATCH_POLSKA', description: 'Nazwa użytkownika technicznego:')
-
+        string(name: 'BATCHUSER', defaultValue: 'PLBATCH_POLSKA', description: 'Podaj nazwę użytkownika technicznego:')
         text(name: 'RIGHTS', defaultValue: 'Baza1.tab1:[select,insert],\nbaza2.tab2:[insert,delete,select]', description: 'Podaj obiekty i uprawnienia:')
+        text(name: 'REASON', defaultValue: 'Uprawnienia potrzebne do...', description: 'Podaj uzasadnienie nadania uprawnień:')
    }
   
   stages {
-    stage('inputParameters') {
-      steps {
-        echo "Hello ${params.BATCHUSER}"
-
-                echo "Uprawnienia: ${params.RIGHTS}"
-      }
-    }
-
- stage('connect to Teradata') {
+    
+ stage('ACCEPT BATCH USER OWNER') {
       steps {
 sh '''
-#You can add
-#comments here
-#so that other developer can get some info 
-#about this script
-#Author: ABCDEF Date: 10-July-2019
+#Compare batch user name form input parameters with batch user name on Teradata
 batchgrovvy="\'''' + params.BATCHUSER + '''\'"
-output="cos"
 LOGON_STRING='192.168.1.38/dbc, dbc'
 default_db=KKDB
 HOST='192.168.1.38'
@@ -46,19 +34,19 @@ bteq << EOF
 '''
 script {
   def data = readFile(file: '/tmp/abc.txt')
-                   println(data)
+  println(data)
   
   def jobName = currentBuild.fullDisplayName
-def mailToRecipients = data
-def useremail= data
+  def mailToRecipients = data
+  def useremail= data
   
   def userAborted = false
 
  emailext body: '''
-    Please go to console output of ${BUILD_URL}input to approve or Reject.<br>
+    Proszę kliknij w link ${BUILD_URL} i zaakceptuj lub odrzuć zmianę.<br>
  ''',    
     mimeType: 'text/html',
-    subject: "[Jenkins] ${jobName} Build Approval Request",
+   subject: "[Jenkins_Teradata_Batch_Users] ${jobName} Zgoda na nadanie uprawnień dla ${params.BATCHUSER}",
     from: "${useremail}",
     to: "${mailToRecipients}",
     recipientProviders: [[$class: 'CulpritsRecipientProvider']]
