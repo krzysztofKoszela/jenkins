@@ -11,15 +11,15 @@ pipeline {
     stage('ACCEPT BATCH USER OWNER') {
       steps {
 bat '''
-#Compare batch user name form input parameters with batch user name on Teradata
-batchgrovvy="\'''' + params.BATCHUSER + '''\'"
-LOGON_STRING='192.168.1.38/dbc, dbc'
-default_db=KKDB
-HOST='192.168.1.38'
-USER='DBC'
-PASSWORD='DBC'
-SRC_DB=KKDB;
-SOURCE_TABLE='BatchUserOwner'
+::Compare batch user name form input parameters with batch user name on Teradata
+set batchgrovvy="\'''' + params.BATCHUSER + '''\'"
+set LOGON_STRING='192.168.1.38/dbc, dbc'
+set default_db=KKDB
+set HOST='192.168.1.38'
+set USER='DBC'
+set PASSWORD='DBC'
+set SRC_DB=KKDB;
+set SOURCE_TABLE='BatchUserOwner'
 bteq << EOF
  .LOGON ${HOST}/${USER},${PASSWORD}
  DATABASE ${SRC_DB};
