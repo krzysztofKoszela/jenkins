@@ -10,7 +10,7 @@ pipeline {
   stages {
     stage('ACCEPT BATCH USER OWNER') {
       steps {
-sh '''
+bat '''
 #Compare batch user name form input parameters with batch user name on Teradata
 batchgrovvy="\'''' + params.BATCHUSER + '''\'"
 LOGON_STRING='192.168.1.38/dbc, dbc'
@@ -78,7 +78,7 @@ script {
 
     stage('addPermissons') {
       steps {
-        sh '''#!/bin/bash
+        bat '''#!/bin/bash
 echo "rm"
 rm /tmp/abc.txt'''
       }
