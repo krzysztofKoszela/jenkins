@@ -16,3 +16,6 @@ timeout(time:5, unit:'DAYS') {
 
 ###########3parralel steps
 https://www.jenkins.io/doc/pipeline/examples/
+#### Allow sequential stages inside parallel in Declarative syntax
+https://issues.jenkins.io/browse/JENKINS-55127?page=com.atlassian.jira.plugin.system.issuetabpanels%3Aall-tabpanel
+https://issues.jenkins.io/browse/JENKINS-46809?page=com.atlassian.jira.plugin.system.issuetabpanels%3Acomment-tabpanel&showAll=true
